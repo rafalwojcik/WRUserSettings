@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "MyUserSetting.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UISwitch *yesOrNoSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *noOrYesSwitch;
 
 @end
 
@@ -16,12 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.yesOrNoSwitch.on = [MyUserSetting shared].yesOrNo;
+    self.noOrYesSwitch.on = [MyUserSetting shared].noOrYes;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)yesOrNoChange:(UISwitch *)sender {
+    [MyUserSetting shared].yesOrNo = sender.on;
 }
+
+- (IBAction)noOrYesChange:(UISwitch *)sender {
+    [MyUserSetting shared].noOrYes = sender.on;
+}
+
 
 @end

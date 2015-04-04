@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7979953C1ACFFCD400474A22 /* MyUserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 7979953B1ACFFCD400474A22 /* MyUserSetting.m */; };
+		7979953F1AD00CE000474A22 /* DragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7979953E1AD00CE000474A22 /* DragAreaView.m */; };
 		79EB74E51ACC179900AD4C65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EB74E41ACC179900AD4C65 /* main.m */; };
 		79EB74E81ACC179900AD4C65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EB74E71ACC179900AD4C65 /* AppDelegate.m */; };
 		79EB74EB1ACC179900AD4C65 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EB74EA1ACC179900AD4C65 /* ViewController.m */; };
@@ -28,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7979953A1ACFFCD400474A22 /* MyUserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUserSetting.h; sourceTree = "<group>"; };
+		7979953B1ACFFCD400474A22 /* MyUserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUserSetting.m; sourceTree = "<group>"; };
+		7979953D1AD00CE000474A22 /* DragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragAreaView.h; sourceTree = "<group>"; };
+		7979953E1AD00CE000474A22 /* DragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragAreaView.m; sourceTree = "<group>"; };
 		79EB74DF1ACC179900AD4C65 /* WRUserSettingsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRUserSettingsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EB74E31ACC179900AD4C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79EB74E41ACC179900AD4C65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				79EB75081ACC180900AD4C65 /* WRUserSettings */,
+				7979953A1ACFFCD400474A22 /* MyUserSetting.h */,
+				7979953B1ACFFCD400474A22 /* MyUserSetting.m */,
+				7979953D1AD00CE000474A22 /* DragAreaView.h */,
+				7979953E1AD00CE000474A22 /* DragAreaView.m */,
 				79EB74E61ACC179900AD4C65 /* AppDelegate.h */,
 				79EB74E71ACC179900AD4C65 /* AppDelegate.m */,
 				79EB74E91ACC179900AD4C65 /* ViewController.h */,
@@ -178,7 +188,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = Aftonbladet;
+				ORGANIZATIONNAME = "Rafał Wójcik";
 				TargetAttributes = {
 					79EB74DE1ACC179900AD4C65 = {
 						CreatedOnToolsVersion = 6.2;
@@ -235,8 +245,10 @@
 			files = (
 				79EB750B1ACC183C00AD4C65 /* WRUserSettings.m in Sources */,
 				79EB74EB1ACC179900AD4C65 /* ViewController.m in Sources */,
+				7979953C1ACFFCD400474A22 /* MyUserSetting.m in Sources */,
 				79EB74E81ACC179900AD4C65 /* AppDelegate.m in Sources */,
 				79EB74E51ACC179900AD4C65 /* main.m in Sources */,
+				7979953F1AD00CE000474A22 /* DragAreaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +439,7 @@
 				79EB75041ACC179900AD4C65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79EB75051ACC179900AD4C65 /* Build configuration list for PBXNativeTarget "WRUserSettingsExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +448,7 @@
 				79EB75071ACC179900AD4C65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
