@@ -19,9 +19,8 @@
 @implementation DragAreaView
 
 - (void)awakeFromNib {
-    CGFloat viewPositionX = [MyUserSetting shared].viewPositionX;
-    CGFloat viewPositionY = [MyUserSetting shared].viewPositionY;
-    self.viewToChange = [[UIView alloc] initWithFrame:CGRectMake(viewPositionX, viewPositionY, 100.0f, 100.0f)];
+    CGPoint viewPosition = [MyUserSetting shared].viewPosition;
+    self.viewToChange = [[UIView alloc] initWithFrame:CGRectMake(viewPosition.x, viewPosition.y, 100.0f, 100.0f)];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panView:)];
     [self.viewToChange addGestureRecognizer:panGesture];
@@ -47,8 +46,7 @@
         newFrame.origin = origin;
         [panGesture.view setFrame:newFrame];
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        [MyUserSetting shared].viewPositionX = panGesture.view.frame.origin.x;
-        [MyUserSetting shared].viewPositionY = panGesture.view.frame.origin.y;
+        [MyUserSetting shared].viewPosition = CGPointMake(panGesture.view.frame.origin.x, panGesture.view.frame.origin.y);
     }
 }
 

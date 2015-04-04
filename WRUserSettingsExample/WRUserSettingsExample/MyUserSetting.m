@@ -12,8 +12,7 @@
 
 - (void)setDefaultsValues {
     self.yesOrNo = YES;
-    self.viewPositionX = 100.0f;
-    self.viewPositionY = 100.0f;
+    self.viewPosition = CGPointMake(100.0f, 100.0f);
 }
 
 @end

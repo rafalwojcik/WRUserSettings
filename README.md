@@ -84,10 +84,22 @@ Implementation file:
 
 To print description of stored values simply use ```-description``` method on your singleton. It prints only stored values so it don't show default values that you set in ```-setDefaultsValues``` method.
 
+## Change log
+
+#### 1.0.1
+
+\- Added support for structures like: ```CGPoint```, ```CGRect```, ```CGSize``` etc.
+
+\- Modify example to show ```CGPoint``` usage.
+
+#### 1.0.0
+
+\- Basic stuff working
+
 ## TODO
 
-* [ ] Make example
-* [ ] Tests 
+* [x] Make example
+* [ ] Tests
 
 ## Requirements
 
@@ -104,8 +116,3 @@ WRUserSettings uses ARC.
 ## Contact
 
 [Rafał Wójcik](http://github.com/rafalwojcik) 
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rafalwojcik/wrusersettings/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

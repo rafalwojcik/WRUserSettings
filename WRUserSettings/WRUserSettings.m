@@ -47,7 +47,8 @@ static NSMutableDictionary *singletonDictionary = nil;
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     id obj = [self valueForKeyPath:keyPath];
-    [[NSUserDefaults standardUserDefaults] setObject:obj forKey:[self p_userDefaultsKeyForKeyPath:keyPath]];
+    NSData *archivedObject = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    [[NSUserDefaults standardUserDefaults] setObject:archivedObject forKey:[self p_userDefaultsKeyForKeyPath:keyPath]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -60,8 +61,9 @@ static NSMutableDictionary *singletonDictionary = nil;
 }
 
 - (void)p_fillFromUserDefaultsPropertyForKeyPath:(NSString *)keyPath {
-    id value = [[NSUserDefaults standardUserDefaults] objectForKey:[self p_userDefaultsKeyForKeyPath:keyPath]];
-    if (value) {
+    NSData *archivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:[self p_userDefaultsKeyForKeyPath:keyPath]];
+    if (archivedObject) {
+        id value = [NSKeyedUnarchiver unarchiveObjectWithData:archivedObject];
         [self setValue:value forKeyPath:keyPath];
     }
 }
@@ -122,7 +124,8 @@ static NSMutableDictionary *singletonDictionary = nil;
         NSString *settingsPrefix = [NSString stringWithFormat:@"%@.", self.uniqueIdentifier];
         if ([key hasPrefix:settingsPrefix]) {
             NSString *modifiedKey = [key stringByReplacingOccurrencesOfString:settingsPrefix withString:@""];
-            [settingsDictionary setObject:obj forKey:modifiedKey];
+            id unarchivedObject = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+            [settingsDictionary setObject:unarchivedObject forKey:modifiedKey];
         }
     }];
     return [settingsDictionary description];
