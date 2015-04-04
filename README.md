@@ -107,22 +107,5 @@ WRUserSettings uses ARC.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rafalwojcik/wrusersettings/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
