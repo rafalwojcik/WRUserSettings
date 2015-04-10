@@ -116,6 +116,20 @@ static NSMutableDictionary *singletonDictionary = nil;
     return nil;
 }
 
+#pragma mark Reset Settings
+
+- (void)resetSettings {
+    NSDictionary *keysAndValues = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    [keysAndValues enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *settingsPrefix = [NSString stringWithFormat:@"%@.", self.uniqueIdentifier];
+        if ([key hasPrefix:settingsPrefix]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        }
+    }];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self p_setupDefaultValues];
+}
+
 #pragma mark Description
 
 - (NSString *)description {

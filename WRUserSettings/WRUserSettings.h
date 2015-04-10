@@ -15,4 +15,5 @@
 
 @interface WRUserSettings : NSObject
 + (instancetype)shared;
+- (void)resetSettings;
 @end
