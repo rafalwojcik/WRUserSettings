@@ -80,11 +80,23 @@ Implementation file:
 @end
 ```
 
+### Reset settings
+
+If you want reset settings call anywhere method ```-resetSettings``` on your singleton. This method iterate through all saved settings and delete it from NSUserDefaults and assign to properties default values.
+
 ### Printing description
 
 To print description of stored values simply use ```-description``` method on your singleton. It prints only stored values so it don't show default values that you set in ```-setDefaultsValues``` method.
 
 ## Change log
+
+#### 1.0.2
+
+\- Add ```-resetSettings``` method
+
+\- Add simple tests
+
+\- Example now use pod instead of imported ```WRUserSettings``` files.
 
 #### 1.0.1
 
@@ -99,7 +111,7 @@ To print description of stored values simply use ```-description``` method on yo
 ## TODO
 
 * [x] Make example
-* [ ] Tests
+* [x] Tests
 
 ## Requirements
 

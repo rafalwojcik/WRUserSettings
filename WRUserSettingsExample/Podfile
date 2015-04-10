@@ -1,0 +1,14 @@
+target 'WRUserSettingsExample' do
+
+pod 'WRUserSettings', :path => "../"
+
+end
+
+target 'WRUserSettingsExampleTests' do
+    
+pod 'WRUserSettings', :path => "../"
+pod 'Expecta'
+pod 'Specta'
+
+end
+
