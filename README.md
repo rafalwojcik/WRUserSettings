@@ -1,16 +1,6 @@
 # WRUserSettings
 Magical User settings class for iOS
 
-## Installation with CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like AFNetworking in your projects. See the ["Getting Started" guide for more information](https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking).
-
-#### Podfile
-
-```ruby
-pod 'WRUserSettings', '~> 1.0'
-```
-
 ## Usage
 
 To start using WRUserSettings just subclass ```WRUserSettings``` class and you are ready to go!!!
@@ -21,14 +11,12 @@ So every property you add to your subclass will be stored in NSUserDefaults. Def
 
 To simple usage you only need add properties to header file of subclass:
 
-```objective-c
-@interface MyUserSetting : WRUserSettings
-
-@property (nonatomic, assign) BOOL shouldShowTutorial;
-@property (nonatomic, strong) NSString *temperatureUnit;
-@property (nonatomic, assign) BOOL notyficationOn;
-
-@end
+```swift
+class MyUserSettings: WRUserSettings {
+	dynamic var shouldShowTutorial: Bool = true
+	dynamic var temperatureUnit: String = "C"
+	dynamic var notyficationOn: Bool = false
+}
 ```
 
 From now every time you set property is automatically save it in NSUserDefaults for you.
@@ -37,58 +25,71 @@ From now every time you set property is automatically save it in NSUserDefaults 
 
 Your class is singleton so you should use ```+shared``` method to get instance of it:
 
-```objective-c
-[MyUserSetting shared].shouldShowTutorial = NO;
+```swift
+MyUserSettings.shared.shouldShowTutorial = false
 ```
 
-Class will automatically save value ```NO``` to NSUserDefaults
+Class will automatically save value ```false``` to NSUserDefaults
 
 ### Getting value
 
 To get value just get instance of class and property:
 
-```objective-c
-BOOL shouldItReallyShowTutorial = [MyUserSetting shared].shouldShowTutorial;
+```swift
+let shouldItReallyShowTutorial = MyUserSettings.shared.shouldShowTutorial
 ```
 
 ### Default values
 
-To set default values just conform to protocol ```WRUserSettingsDefaultsProtocol``` and implement method ```-setDefaultsValues```. Inside this method you can set default values.
-
-Header file:
-
-```objective-c
-@interface MyUserSetting : WRUserSettings <WRUserSettingsDefaultsProtocol>
-
-@property (nonatomic, assign) BOOL shouldShowTutorial;
-@property (nonatomic, strong) NSString *temperatureUnit;
-@property (nonatomic, assign) BOOL notyficationOn;
-
-@end
-```
-
-Implementation file:
-
-```objective-c
-@implementation MyUserSetting
-
-- (void)setDefaultsValues {
-    self.shouldShowTutorial = YES;
-    self.temperatureUnit = @"C";
-}
-
-@end
-```
+To set default values just use default assigment as above. We are storing defaults in instance.
 
 ### Reset settings
 
-If you want reset settings call anywhere method ```-resetSettings``` on your singleton. This method iterate through all saved settings and delete it from NSUserDefaults and assign to properties default values.
+If you want reset settings call anywhere method ```reset()``` on your singleton. This method iterate through all saved settings and delete it from NSUserDefaults and assign to properties default values.
 
 ### Printing description
 
-To print description of stored values simply use ```-description``` method on your singleton. It prints only stored values so it don't show default values that you set in ```-setDefaultsValues``` method.
+To print description of stored values simply print your singleton. It prints only stored values so it don't show default values that you set.
+
+## Installation
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 1.1.0+ is required to build WRUserSettings 3.0.0+.
+
+To integrate WRUserSettings into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'WRUserSettings', '~> 3.0.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ## Change log
+
+#### 3.0.0
+
+\- Refactored Swift 3.0 version
+
+#### 2.0.0
+
+\- Swift version
 
 #### 1.0.2
 
@@ -115,7 +116,7 @@ To print description of stored values simply use ```-description``` method on yo
 
 ## Requirements
 
-WRUserSettings requires either iOS 6.0 and above. 
+WRUserSettings requires either iOS 8.0 and above. 
 
 ## License
 
