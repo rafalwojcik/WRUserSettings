@@ -1,0 +1,3 @@
+[submodule "External/XCTestPlayground"]
+	path = External/XCTestPlayground
+	url = https://github.com/Liquidsoul/XCTestPlayground.git
