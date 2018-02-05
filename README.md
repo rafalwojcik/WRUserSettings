@@ -51,6 +51,20 @@ If you want reset settings call anywhere method ```reset()``` on your singleton.
 
 To print description of stored values simply print your singleton. It prints only stored values so it don't show default values that you set.
 
+### Using `suiteName`
+
+To use `suiteName` all you need to do is override method `func suiteName() -> String?` in your subclass:
+
+```swift
+class MyUserSettings: WRUserSettings {
+	dynamic var shouldShowTutorial: Bool = true
+
+	override func suiteName() -> String? {
+        return "com.chillicoder.my_app_group"
+    }
+}
+```
+
 ## Installation
 
 ### CocoaPods
@@ -85,6 +99,13 @@ $ pod install
 
 #### 3.0.0
 
+\- Refactored Swift 4.0 version
+\- Added support for `suiteName`
+\- Auto migration when you start using `suiteName`
+\- BUG: fix problem with not unregistred notifications after deinit
+
+#### 3.0.0
+
 \- Refactored Swift 3.0 version
 
 #### 2.0.0
@@ -116,7 +137,7 @@ $ pod install
 
 ## Requirements
 
-WRUserSettings requires either iOS 8.0 and above. 
+WRUserSettings requires either iOS 8.0 and above.
 
 ## License
 
@@ -128,4 +149,4 @@ WRUserSettings uses ARC.
 
 ## Contact
 
-[Rafał Wójcik](http://github.com/rafalwojcik) 
+[Rafał Wójcik](http://github.com/rafalwojcik)
