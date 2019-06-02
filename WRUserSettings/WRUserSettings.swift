@@ -1,7 +1,8 @@
 import Foundation
 
-protocol SharedInstanceType: class {
-    init()
+public protocol SharedInstanceType: class {
+    init(classType: AnyClass)
+    func clearInstances()
 }
 
 private var userSettingsSingletons = [String: SharedInstanceType]()
@@ -9,11 +10,15 @@ extension SharedInstanceType {
     public static var shared: Self {
         let className = String(describing: self)
         guard let singleton = userSettingsSingletons[className] as? Self else {
-            let singleton = Self()
+            let singleton = Self.init(classType: self)
             userSettingsSingletons[className] = singleton
             return singleton
         }
         return singleton
+    }
+
+    public func clearInstances() {
+        userSettingsSingletons = [:]
     }
 }
 
@@ -21,13 +26,14 @@ extension SharedInstanceType {
 open class WRUserSettings: NSObject, SharedInstanceType {
     typealias Property = String
 
-    fileprivate var migrationUserDefaultKey: String { return "MigrationKey-\(uniqueIdentifierKey)" }
-    fileprivate var childClassName: String { return String(describing: Mirror(reflecting: self).subjectType) }
-    fileprivate var uniqueIdentifierKey: String { return "\(childClassName)-WRUserSettingsIdentifier" }
-    fileprivate var userDefaults = UserDefaults.standard
-    fileprivate var defaultValues: [String: Data] = [:]
+    private var migrationUserDefaultKey: String { return "MigrationKey-\(uniqueIdentifierKey)" }
+    private let childClassName: String
+    private var uniqueIdentifierKey: String { return "\(childClassName)-WRUserSettingsIdentifier" }
+    private var userDefaults = UserDefaults.standard
+    private var defaultValues: [String: Data] = [:]
 
-    required override public init() {
+    required public init(classType: AnyClass) {
+        childClassName = String(describing: classType)
         super.init()
         if let suiteName = suiteName(), let newUserDefaults = UserDefaults(suiteName: suiteName) {
             migrateIfNeeded(from: userDefaults, to: newUserDefaults)
@@ -50,19 +56,19 @@ open class WRUserSettings: NSObject, SharedInstanceType {
         }
     }
 
-    fileprivate func userDefaultsKey(forProperty property: Property) -> String {
+    private func userDefaultsKey(forProperty property: Property) -> String {
         return "\(uniqueIdentifierKey).\(property)"
     }
 
     private func saveDefaultValue(_ property: Property) {
         guard let object = self.value(forKeyPath: property) else { return }
-        let archivedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+        let archivedObject = try? NSKeyedArchiver.data(object: object)
         defaultValues[property] = archivedObject
     }
 
     private func fillProperty(_ property: Property) {
         if let data = userDefaults.object(forKey: userDefaultsKey(forProperty: property)) as? Data {
-            let value = NSKeyedUnarchiver.unarchiveObject(with: data)
+            let value = NSKeyedUnarchiver.object(data: data)
             self.setValue(value, forKey: property)
         }
     }
@@ -87,13 +93,9 @@ open class WRUserSettings: NSObject, SharedInstanceType {
 
 // MARK: Public methods
 extension WRUserSettings {
-    public class func shared() -> Self {
-        return self.shared
-    }
-
     public func reset() {
         for (property, defaultValue) in defaultValues {
-            let value = NSKeyedUnarchiver.unarchiveObject(with: defaultValue)
+            let value = NSKeyedUnarchiver.object(data: defaultValue)
             self.setValue(value, forKey: property)
         }
     }
@@ -106,7 +108,7 @@ extension WRUserSettings {
         for (key, value) in userDefaults.dictionaryRepresentation() where key.hasPrefix(uniqueIdentifierKey) {
             guard let data = value as? Data else { continue }
             let newKey = key.replacingOccurrences(of: "\(uniqueIdentifierKey).", with: "")
-            let object = NSKeyedUnarchiver.unarchiveObject(with: data)
+            let object = NSKeyedUnarchiver.object(data: data)
             settings[newKey] = object
         }
         return settings.description
@@ -122,8 +124,29 @@ extension WRUserSettings {
             userDefaults.removeObject(forKey: usKey)
             return
         }
-        let archivedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+        let archivedObject = try? NSKeyedArchiver.data(object: object)
         userDefaults.set(archivedObject, forKey: usKey)
         userDefaults.synchronize()
     }
 }
+
+private extension NSKeyedUnarchiver {
+    class func object(data: Data) -> Any? {
+        if #available(iOS 11.0, macOS 10.12, *) {
+            return (try? self.unarchiveTopLevelObjectWithData(data)) ?? nil
+        } else {
+            return self.unarchiveObject(with: data)
+        }
+    }
+}
+
+private extension NSKeyedArchiver {
+    class func data(object: Any) throws -> Data {
+        if #available(iOS 11.0, macOS 10.12, *) {
+            return try self.archivedData(withRootObject: object, requiringSecureCoding: false)
+        } else {
+            return self.archivedData(withRootObject: object)
+        }
+    }
+}
+
