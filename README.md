@@ -15,7 +15,7 @@ To simple usage you only need add properties to header file of subclass:
 class MyUserSettings: WRUserSettings {
 	dynamic var shouldShowTutorial: Bool = true
 	dynamic var temperatureUnit: String = "C"
-	dynamic var notyficationOn: Bool = false
+	dynamic var notificationOn: Bool = false
 }
 ```
 
