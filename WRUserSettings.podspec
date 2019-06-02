@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name     = 'WRUserSettings'
-	s.version  = '4.0.0'
+	s.version  = '5.0.0'
 	s.license  = 'MIT'
 	s.summary  = 'Magical User settings class for iOS written in Swift'
 	s.homepage = 'https://github.com/rafalwojcik/WRUserSettings'
