@@ -151,11 +151,11 @@ $ pod install
 
 * [x] Make example
 * [x] Tests
-* [] 100% test coverage
+* [] 100% test coverage (if anyone have idea how to test migration part, feel free to contribute)
 
 ## Requirements
 
-WRUserSettings requires either iOS 8.0 and above.
+WRUserSettings requires either iOS 9.0 and above.
 
 ## License
 

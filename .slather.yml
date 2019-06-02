@@ -1,0 +1,9 @@
+coverage_service: cobertura_xml
+xcodeproj: WRUserSettings.xcodeproj
+workspace: WRUserSettings.xcworkspace
+scheme: WRUserSettings
+output_directory: reports
+source_directory: WRUserSettings
+ignore:
+  - WRUserSettingsTests/*
+  - WRUserSettingsExample/*

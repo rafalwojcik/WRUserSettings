@@ -28,3 +28,4 @@ Pods
 WRUserSettings.xcworkspace
 WRUserSettingsExample/Pods
 WRUserSettingsExample/WRUserSettingsExample.xcworkspace
+reports/cobertura.xml
