@@ -1,0 +1,16 @@
+PODS:
+  - WRUserSettings (5.0.0)
+
+DEPENDENCIES:
+  - WRUserSettings (from `./../`)
+
+EXTERNAL SOURCES:
+  WRUserSettings:
+    :path: "./../"
+
+SPEC CHECKSUMS:
+  WRUserSettings: 9de034c7003c3c2e26993588885e4cdfda8dcbce
+
+PODFILE CHECKSUM: 3bf4ea594c632812b645959051f05668a614fd06
+
+COCOAPODS: 1.6.1

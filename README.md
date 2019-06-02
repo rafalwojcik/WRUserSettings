@@ -15,7 +15,7 @@ To simple usage you only need add properties to header file of subclass:
 class MyUserSettings: WRUserSettings {
 	dynamic var shouldShowTutorial: Bool = true
 	dynamic var temperatureUnit: String = "C"
-	dynamic var notyficationOn: Bool = false
+	dynamic var notificationOn: Bool = false
 }
 ```
 
@@ -97,11 +97,28 @@ $ pod install
 
 ## Change log
 
+#### 5.0.0
+
+\- Rewrite to support Swift 5.0.0
+
+\- Added example in swift
+
+\- Tests with 71% coverage
+
+#### 4.0.0
+
+\- Added support for suiteName
+
+\- Auto migration from standard user defaults
+
 #### 3.0.0
 
 \- Refactored Swift 4.0 version
+
 \- Added support for `suiteName`
+
 \- Auto migration when you start using `suiteName`
+
 \- BUG: fix problem with not unregistred notifications after deinit
 
 #### 3.0.0
@@ -132,8 +149,9 @@ $ pod install
 
 ## TODO
 
-* [] Make example
-* [] Tests
+* [x] Make example
+* [x] Tests
+* [] 100% test coverage
 
 ## Requirements
 
@@ -149,4 +167,4 @@ WRUserSettings uses ARC.
 
 ## Contact
 
-[Rafał Wójcik](http://github.com/rafalwojcik)
+[Rafał Wójcik](https://rwojcik.me)
