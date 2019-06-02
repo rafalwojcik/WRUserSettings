@@ -8,9 +8,9 @@ Pod::Spec.new do |s|
 	s.source   = { :git => 'https://github.com/rafalwojcik/WRUserSettings.git', :tag => s.version.to_s }
 
 	s.module_name = 'WRUserSettings'
-	s.platform = :ios, '8.0'
-	s.ios.deployment_target = '8.0'
+	s.platform = :ios, '9.0'
+	s.ios.deployment_target = '9.0'
 	s.requires_arc = true
 	s.source_files = 'WRUserSettings/**/*.swift'
-	s.swift_version = '4.0.3'
+	s.swift_version = '5.0.0'
 end
